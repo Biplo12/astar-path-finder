@@ -72,11 +72,11 @@ const Grid: React.FC = (): JSX.Element => {
                 : hoveredCell[0] === i && hoveredCell[1] === j
                 ? "bg-green-500"
                 : col === 3
-                ? "bg-yellow-500"
+                ? "bg-red-500"
                 : col === 1
                 ? "bg-green-500"
                 : col === 2
-                ? "bg-red-500"
+                ? "bg-yellow-500"
                 : "bg-gray-700"
             }`}
             onClick={() => handleCellClick(i, j)}

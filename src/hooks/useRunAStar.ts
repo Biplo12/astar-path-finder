@@ -7,6 +7,7 @@ const useRunAStar = (
   grid: number[][]
 ) => {
   const [pathCells, setPathCells] = useState<number[][]>([]);
+  const [visitedCells, setVisitedCells] = useState<number[][]>([]);
 
   const runAStar = () => {
     if (startCell.length === 0 || endCell.length === 0) {
@@ -50,9 +51,14 @@ const useRunAStar = (
         clearInterval(intervalId);
       }
     }, 50);
+
+    setVisitedCells((prevVisitedCells) => [
+      ...prevVisitedCells,
+      ...path.slice(0, path.length - 1),
+    ]);
   };
 
-  return { runAStar, pathCells, setPathCells };
+  return { runAStar, pathCells, setPathCells, visitedCells, setVisitedCells };
 };
 
 export default useRunAStar;
