@@ -4,10 +4,10 @@ import { Grid, AStarFinder } from "pathfinding";
 const useRunAStar = (
   startCell: number[],
   endCell: number[],
-  grid: number[][]
+  grid: number[][],
+  setPathNotFound: (pathNotFound: boolean) => void
 ) => {
   const [pathCells, setPathCells] = useState<number[][]>([]);
-  const [visitedCells, setVisitedCells] = useState<number[][]>([]);
 
   const runAStar = () => {
     if (startCell.length === 0 || endCell.length === 0) {
@@ -22,12 +22,14 @@ const useRunAStar = (
     for (let row = 0; row < numRows; row++) {
       matrix[row] = new Array(numCols);
       for (let col = 0; col < numCols; col++) {
-        matrix[row][col] = grid[row][col] === 1 ? 1 : 0;
+        matrix[row][col] = grid[row][col] === 1 ? Infinity : 0;
       }
     }
 
     const gridInstance = new Grid(matrix);
-    const finder = new AStarFinder();
+    const finder = new AStarFinder({
+      walkable: (x, y) => grid[y][x] !== Infinity,
+    });
     const path = finder.findPath(
       startCell[1],
       startCell[0],
@@ -37,7 +39,7 @@ const useRunAStar = (
     );
 
     if (path.length === 0) {
-      console.log("No path found");
+      setPathNotFound(true);
       return;
     }
 
@@ -51,14 +53,9 @@ const useRunAStar = (
         clearInterval(intervalId);
       }
     }, 50);
-
-    setVisitedCells((prevVisitedCells) => [
-      ...prevVisitedCells,
-      ...path.slice(0, path.length - 1),
-    ]);
   };
 
-  return { runAStar, pathCells, setPathCells, visitedCells, setVisitedCells };
+  return { runAStar, pathCells, setPathCells };
 };
 
 export default useRunAStar;
