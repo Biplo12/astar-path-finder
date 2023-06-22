@@ -12,3 +12,4 @@ export default defineConfig({
     },
   },
 });
+declare const __dirname: string;
