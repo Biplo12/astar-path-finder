@@ -62,7 +62,7 @@ const Grid: React.FC<IGrid> = ({
           row.map((col, j) => (
             <div
               key={`${i}-${j}`}
-              className={`w-16 h-16 border border-red-500
+              className={`w-[3.5rem] h-[3.5rem] border border-red-500
             ${
               pathCells?.some((cell) => cell?.[0] === i && cell?.[1] === j)
                 ? "bg-violet-500"
