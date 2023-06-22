@@ -18,6 +18,12 @@ const Legend: React.FC = (): JSX.Element => {
           <p>Path</p>
         </div>
       </div>
+      <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center gap-2">
+          <div className="w-4 h-4 bg-green-500 rounded-full" />
+          <p>User obstacle</p>
+        </div>
+      </div>
     </div>
   );
 };
