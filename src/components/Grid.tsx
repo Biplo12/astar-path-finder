@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useInitialGrid from "@/hooks/useInitialGrid";
 import useCellClick from "@/hooks/useCellClick";
 import useCellHover from "@/hooks/useCellHover";
-import useRunDjikstra from "@/hooks/useRunDjikstra";
+import useRunAStar from "@/hooks/useRunAStar";
 
 const COLUNMS = 12;
 const ROWS = 12;
@@ -10,7 +10,6 @@ const ROWS = 12;
 const Grid: React.FC = (): JSX.Element => {
   const [hoveredCell, setHoveredCell] = useState<number[]>([]);
   const [clickedCell, setClickedCell] = useState<number[]>([]);
-
   const [isMouseDown, setIsMouseDown] = useState(false);
 
   const { grid, startCell, endCell, setGrid, initializeGrid } =
@@ -37,7 +36,7 @@ const Grid: React.FC = (): JSX.Element => {
     clickedCell
   );
 
-  const { dijkstra, pathCells, setPathCells } = useRunDjikstra(
+  const { runAStar, pathCells, setPathCells } = useRunAStar(
     startCell,
     endCell,
     grid
@@ -88,7 +87,7 @@ const Grid: React.FC = (): JSX.Element => {
           />
         ))
       )}
-      <button className="col-span-12 bg-blue-500" onClick={() => dijkstra()}>
+      <button className="col-span-12 bg-blue-500" onClick={() => runAStar()}>
         Run
       </button>
       <button
