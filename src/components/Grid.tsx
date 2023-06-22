@@ -13,7 +13,8 @@ const Grid: React.FC = (): JSX.Element => {
 
   const [isMouseDown, setIsMouseDown] = useState(false);
 
-  const { grid, startCell, endCell, setGrid } = useInitialGrid(COLUNMS, ROWS);
+  const { grid, startCell, endCell, setGrid, initializeGrid } =
+    useInitialGrid();
 
   const { handleCellHover } = useCellHover(
     grid,
@@ -36,7 +37,11 @@ const Grid: React.FC = (): JSX.Element => {
     clickedCell
   );
 
-  const { dijkstra, pathCells } = useRunDjikstra(startCell, endCell, grid);
+  const { dijkstra, pathCells, setPathCells } = useRunDjikstra(
+    startCell,
+    endCell,
+    grid
+  );
 
   const handleMouseDown = () => {
     setIsMouseDown(true);
@@ -44,6 +49,11 @@ const Grid: React.FC = (): JSX.Element => {
 
   const handleMouseUp = () => {
     setIsMouseDown(false);
+  };
+
+  const handleReset = () => {
+    initializeGrid(COLUNMS, ROWS);
+    setPathCells([]);
   };
 
   return (
@@ -80,6 +90,12 @@ const Grid: React.FC = (): JSX.Element => {
       )}
       <button className="col-span-12 bg-blue-500" onClick={() => dijkstra()}>
         Run
+      </button>
+      <button
+        className="col-span-12 bg-blue-500 mt-2"
+        onClick={() => handleReset()}
+      >
+        Reset
       </button>
     </div>
   );

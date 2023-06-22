@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 
-const useInitialGrid = (rows: number, cols: number) => {
+const COLUNMS = 12;
+const ROWS = 12;
+
+const useInitialGrid = () => {
   const [startCell, setStartCell] = useState<number[]>([]);
   const [endCell, setEndCell] = useState<number[]>([]);
   const [grid, setGrid] = useState<Array<Array<number>>>([]);
 
-  useEffect(() => {
+  const initializeGrid = (cols, rows) => {
     const newGrid = [];
     for (let i = 0; i < cols; i++) {
       newGrid.push([]);
@@ -23,9 +26,13 @@ const useInitialGrid = (rows: number, cols: number) => {
     newGrid[randomRowIndex][randomColIndex] = 2;
     newGrid[randomRowIndex2][randomColIndex2] = 3;
     setGrid(newGrid);
-  }, [cols, rows]);
+  };
 
-  return { grid, startCell, endCell, setGrid };
+  useEffect(() => {
+    initializeGrid(COLUNMS, ROWS);
+  }, []);
+
+  return { grid, startCell, endCell, setGrid, initializeGrid };
 };
 
 export default useInitialGrid;

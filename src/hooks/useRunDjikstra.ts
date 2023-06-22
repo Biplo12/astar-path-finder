@@ -91,7 +91,7 @@ const useRunDjikstra = (
     return neighbors;
   };
 
-  return { dijkstra, pathCells };
+  return { dijkstra, pathCells, setPathCells };
 };
 
 export default useRunDjikstra;
