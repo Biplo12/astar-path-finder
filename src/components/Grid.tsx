@@ -28,7 +28,6 @@ const Grid: React.FC<IGrid> = ({
     setGrid,
     startCell,
     endCell,
-    clickedCell,
     isMouseDown,
     setHoveredCell,
     hoveredCell

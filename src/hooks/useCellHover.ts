@@ -3,7 +3,6 @@ const useCellHover = (
   setGrid: React.Dispatch<React.SetStateAction<Array<Array<number>>>>,
   startCell: number[],
   endCell: number[],
-  clickedCell: number[],
   isMouseDown: boolean,
   setHoveredCell: React.Dispatch<React.SetStateAction<number[]>>,
   hoveredCell: number[]
@@ -15,9 +14,8 @@ const useCellHover = (
       const updatedGrid = [...grid];
       updatedGrid[rowIndex][colIndex] = 1;
       setGrid(updatedGrid);
-    } else if (clickedCell.length > 0 && !isMouseDown) {
-      setHoveredCell([rowIndex, colIndex]);
     }
+    setHoveredCell([rowIndex, colIndex]);
   };
 
   return { handleCellHover, hoveredCell, setHoveredCell };
