@@ -5,23 +5,24 @@ import useInitialGrid from "@/hooks/useInitialGrid";
 import PathNotFound from "./PathNotFound";
 import useRunAStar from "@/hooks/useRunAStar";
 import ResetButton from "./ResetButton";
-import PlacePointsManually from "./PlacePointsManually";
+
+const COLUNMS = 12;
+const ROWS = 12;
+
 const Main: React.FC = (): JSX.Element => {
   const [pathNotFound, setPathNotFound] = useState(false);
-  const {
-    grid,
-    startCell,
-    endCell,
-    setGrid,
-    initializeGrid,
-    setEndCell,
-    setStartCell,
-  } = useInitialGrid();
+  const [disableButtons, setDisableButtons] = useState(false);
+  const { grid, startCell, endCell, setGrid, initializeGrid } = useInitialGrid(
+    COLUNMS,
+    ROWS
+  );
+
   const { pathCells, setPathCells, runAStar } = useRunAStar(
     startCell,
     endCell,
     grid,
-    setPathNotFound
+    setPathNotFound,
+    setDisableButtons
   );
 
   return (
@@ -36,19 +37,15 @@ const Main: React.FC = (): JSX.Element => {
         setPathCells={setPathCells}
       />
       <div className="w-full grid grid-cols-12 gap-1">
-        <RunAlgorithmButton runAStar={runAStar} />
+        <RunAlgorithmButton
+          runAStar={runAStar}
+          disableButtons={disableButtons}
+        />
         <ResetButton
           initializeGrid={initializeGrid}
           setPathCells={setPathCells}
           setPathNotFound={setPathNotFound}
-        />
-        <PlacePointsManually
-          grid={grid}
-          setGrid={setGrid}
-          setPathNotFound={setPathNotFound}
-          setPathCells={setPathCells}
-          setStartCell={setStartCell}
-          setEndCell={setEndCell}
+          setDisableButtons={setDisableButtons}
         />
       </div>
       <PathNotFound pathNotFound={pathNotFound} />

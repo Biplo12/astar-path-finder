@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media screen and (max-width: 1024px) {
+  .cell-singular {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .cell-singular {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

@@ -48,10 +48,3 @@ Once the web page is loaded, you can interact with the Path Finder script as fol
 ### Responsive Design (TODO)
 
 The Path Finder script is designed with responsiveness in mind to ensure a great user experience across different devices and screen sizes. The layout and functionality of the web application will adapt to fit various resolutions, including desktops, tablets, and mobile devices.
-
-### Placing Start and End Points (TODO)
-
-In addition to drawing walls on the grid, users can now manually place the start and end points by following these steps:
-
-1. Click on a cell in the grid to set it as the start point. The cell will turn yellow.
-2. Click on another cell to set it as the end point.

@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Grid, AStarFinder } from "pathfinding";
+import { Grid, AStarFinder, FinderOptions } from "pathfinding";
 
 const useRunAStar = (
   startCell: number[],
   endCell: number[],
   grid: number[][],
-  setPathNotFound: (pathNotFound: boolean) => void
+  setPathNotFound: (pathNotFound: boolean) => void,
+  setDisableButtons: (disableButtons: boolean) => void
 ) => {
   const [pathCells, setPathCells] = useState<number[][]>([]);
 
@@ -28,8 +29,8 @@ const useRunAStar = (
 
     const gridInstance = new Grid(matrix);
     const finder = new AStarFinder({
-      walkable: (x, y) => grid[y][x] !== Infinity,
-    });
+      walkable: (x: number, y: number) => grid[y][x] !== Infinity,
+    } as FinderOptions);
     const path = finder.findPath(
       startCell[1],
       startCell[0],
@@ -49,6 +50,7 @@ const useRunAStar = (
       setPathCells((prevPathCells) => [...prevPathCells, [rowIndex, colIndex]]);
       index++;
 
+      setDisableButtons(true);
       if (index === path.length - 1) {
         clearInterval(intervalId);
       }
