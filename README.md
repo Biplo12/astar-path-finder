@@ -13,6 +13,7 @@ The Path Finder script is a web application that allows users to find the shorte
 - Delayed rendering of the path to visualize the algorithm's progress
 - Path rendered as violet cells
 - Legend to explain the colors used on the grid
+- Responsive design for better usability on different devices
 
 ### Technologies Used
 
@@ -44,7 +45,3 @@ Once the web page is loaded, you can interact with the Path Finder script as fol
 5. **Visualize the Path**: The algorithm's progress is visualized by rendering the path cells as violet. Each step of the pathfinding algorithm is rendered with a delay to provide a clear visualization.
 6. **Restart**: If you want to start over, click the restart button. This will clear the grid and allow you to place the start and end points again.
 7. **Legend**: On the right side of the grid, there is a legend that explains the meaning of each cell color.
-
-### Responsive Design (TODO)
-
-The Path Finder script is designed with responsiveness in mind to ensure a great user experience across different devices and screen sizes. The layout and functionality of the web application will adapt to fit various resolutions, including desktops, tablets, and mobile devices.
