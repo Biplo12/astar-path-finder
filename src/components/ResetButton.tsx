@@ -20,10 +20,7 @@ const ResetButton: React.FC<IResetButton> = ({
     setPathNotFound(false);
   };
   return (
-    <button
-      className="col-span-12 bg-blue-500 mt-2"
-      onClick={() => handleReset()}
-    >
+    <button className="col-span-12 bg-blue-500" onClick={() => handleReset()}>
       Reset
     </button>
   );

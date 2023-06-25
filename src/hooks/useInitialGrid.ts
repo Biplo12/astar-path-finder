@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 const COLUNMS = 12;
 const ROWS = 12;
 
+const START_CELL = 2;
+const END_CELL = 3;
+
 const useInitialGrid = () => {
   const [startCell, setStartCell] = useState<number[]>([]);
   const [endCell, setEndCell] = useState<number[]>([]);
@@ -16,15 +19,24 @@ const useInitialGrid = () => {
         newGrid[i].push(0);
       }
     }
-    const randomRowIndex = Math.floor(Math.random() * rows);
-    const randomColIndex = Math.floor(Math.random() * rows);
+    const randomRowIndexStart = Math.floor(Math.random() * rows);
+    const randomColIndexStart = Math.floor(Math.random() * rows);
 
-    const randomRowIndex2 = Math.floor(Math.random() * rows);
-    const randomColIndex2 = Math.floor(Math.random() * rows);
-    setStartCell([randomRowIndex, randomColIndex]);
-    setEndCell([randomRowIndex2, randomColIndex2]);
-    newGrid[randomRowIndex][randomColIndex] = 2;
-    newGrid[randomRowIndex2][randomColIndex2] = 3;
+    const randomRowIndexEnd = Math.floor(Math.random() * rows);
+    const randomColIndexEnd = Math.floor(Math.random() * rows);
+
+    if (
+      Math.abs(randomRowIndexStart - randomRowIndexEnd) <= 1 &&
+      Math.abs(randomColIndexStart - randomColIndexEnd) <= 1
+    ) {
+      initializeGrid(cols, rows);
+      return;
+    }
+
+    setStartCell([randomRowIndexStart, randomColIndexStart]);
+    setEndCell([randomRowIndexEnd, randomColIndexEnd]);
+    newGrid[randomRowIndexStart][randomColIndexStart] = START_CELL;
+    newGrid[randomRowIndexEnd][randomColIndexEnd] = END_CELL;
     setGrid(newGrid);
   };
 
@@ -32,7 +44,15 @@ const useInitialGrid = () => {
     initializeGrid(COLUNMS, ROWS);
   }, []);
 
-  return { grid, startCell, endCell, setGrid, initializeGrid };
+  return {
+    grid,
+    startCell,
+    endCell,
+    setGrid,
+    initializeGrid,
+    setStartCell,
+    setEndCell,
+  };
 };
 
 export default useInitialGrid;

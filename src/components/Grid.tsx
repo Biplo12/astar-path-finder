@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import useCellClick from "@/hooks/useCellClick";
 import useCellHover from "@/hooks/useCellHover";
 
+const START_CELL = 1;
+const END_CELL = 2;
+const PATH_CELL = 3;
+
 interface IGrid {
   grid: number[][];
   setGrid: React.Dispatch<React.SetStateAction<number[][]>>;
@@ -62,17 +66,17 @@ const Grid: React.FC<IGrid> = ({
           row.map((col, j) => (
             <div
               key={`${i}-${j}`}
-              className={`w-[3.5rem] h-[3.5rem] border border-red-500
+              className={`w-[3rem] h-[3rem] border border-red-500
             ${
               pathCells?.some((cell) => cell?.[0] === i && cell?.[1] === j)
                 ? "bg-violet-500"
                 : hoveredCell[0] === i && hoveredCell[1] === j
                 ? "bg-green-500"
-                : col === 3
+                : col === PATH_CELL
                 ? "bg-red-500"
-                : col === 1
+                : col === START_CELL
                 ? "bg-green-500"
-                : col === 2
+                : col === END_CELL
                 ? "bg-yellow-500"
                 : "bg-gray-700"
             }`}

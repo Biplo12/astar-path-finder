@@ -5,10 +5,18 @@ import useInitialGrid from "@/hooks/useInitialGrid";
 import PathNotFound from "./PathNotFound";
 import useRunAStar from "@/hooks/useRunAStar";
 import ResetButton from "./ResetButton";
+import PlacePointsManually from "./PlacePointsManually";
 const Main: React.FC = (): JSX.Element => {
   const [pathNotFound, setPathNotFound] = useState(false);
-  const { grid, startCell, endCell, setGrid, initializeGrid } =
-    useInitialGrid();
+  const {
+    grid,
+    startCell,
+    endCell,
+    setGrid,
+    initializeGrid,
+    setEndCell,
+    setStartCell,
+  } = useInitialGrid();
   const { pathCells, setPathCells, runAStar } = useRunAStar(
     startCell,
     endCell,
@@ -33,6 +41,14 @@ const Main: React.FC = (): JSX.Element => {
           initializeGrid={initializeGrid}
           setPathCells={setPathCells}
           setPathNotFound={setPathNotFound}
+        />
+        <PlacePointsManually
+          grid={grid}
+          setGrid={setGrid}
+          setPathNotFound={setPathNotFound}
+          setPathCells={setPathCells}
+          setStartCell={setStartCell}
+          setEndCell={setEndCell}
         />
       </div>
       <PathNotFound pathNotFound={pathNotFound} />
