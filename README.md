@@ -1,6 +1,6 @@
 ## Path Finder Documentation
 
-The Path Finder script is a web application that allows users to find the shortest path between a start point and an end point on a grid using the A\* algorithm. The grid is represented as a 12x12 matrix, and the start point is marked as yellow, while the end point is marked as red. Users can also draw walls on the grid to create obstacles for the pathfinding algorithm.
+The Path Finder script is a web application that allows users to find the shortest path between a start point and an end point on a grid using the A\* algorithm. The grid is represented as a 12x12 matrix, and the start point is marked as yellow, while the endpoint is marked as red. Users can also draw walls on the grid to create obstacles for the pathfinding algorithm.
 
 ### Features
 
@@ -39,9 +39,8 @@ To use the Path Finder script locally, follow these steps:
 Once the web page is loaded, you can interact with the Path Finder script as follows:
 
 1. **View the Grid**: The grid is displayed on the screen as a 12x12 matrix of cells. Each cell has a default color.
-2. **Place Start and End Points**: You can click on any cell on the grid to place the start point (marked as yellow) or the end point (marked as red).
-3. **Draw Walls**: To create obstacles, you can click or click and drag on the grid to draw walls. Walls are represented by green cells. The A\* algorithm will consider these cells as obstacles when finding the shortest path.
-4. **Run the Algorithm**: Click the run button to execute the A\* algorithm and find the shortest path between the start and end points. The algorithm will take into account the walls on the grid.
-5. **Visualize the Path**: The algorithm's progress is visualized by rendering the path cells as violet. Each step of the pathfinding algorithm is rendered with a delay to provide a clear visualization.
-6. **Restart**: If you want to start over, click the restart button. This will clear the grid and allow you to place the start and end points again.
-7. **Legend**: On the right side of the grid, there is a legend that explains the meaning of each cell color.
+2. **Draw Walls**: To create obstacles, you can click or click and drag on the grid to draw walls. Walls are represented by green cells. The A\* algorithm will consider these cells as obstacles when finding the shortest path.
+3. **Run the Algorithm**: Click the run button to execute the A\* algorithm and find the shortest path between the start and endpoints. The algorithm will take into account the walls on the grid.
+4. **Visualize the Path**: The algorithm's progress is visualized by rendering the path cells as violet. Each step of the pathfinding algorithm is rendered with a delay to provide a clear visualization.
+5. **Restart**: If you want to start over, click the restart button. This will clear the grid and allow you to place the start and end points again.
+6. **Legend**: On the right side of the grid, there is a legend that explains the meaning of each cell color.
