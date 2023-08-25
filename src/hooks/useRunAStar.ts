@@ -28,7 +28,7 @@ const useRunAStar = (
 
     const gridInstance = new Grid(matrix);
     const finder = new AStarFinder({
-      walkable: (x: string, y: string) => grid[y][x] !== Infinity,
+      walkable: (x, y) => grid[y][x] !== Infinity,
     });
     const path = finder.findPath(
       startCell[1],
