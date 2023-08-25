@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useCellClick from "@/hooks/useCellClick";
 import useCellHover from "@/hooks/useCellHover";
 
@@ -7,7 +7,6 @@ interface IGrid {
   setGrid: React.Dispatch<React.SetStateAction<number[][]>>;
   startCell: number[];
   endCell: number[];
-  setPathNotFound: React.Dispatch<React.SetStateAction<boolean>>;
   pathCells: number[][];
   setPathCells: React.Dispatch<React.SetStateAction<number[][]>>;
 }
@@ -51,6 +50,29 @@ const Grid: React.FC<IGrid> = ({
     setIsMouseDown(false);
   };
 
+  const [squereWidth, setSquereWidth] = useState(3.5);
+  const [squereHeight, setSquereHeight] = useState(3.5);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640 && window.innerWidth > 540) {
+        setSquereWidth(2.5);
+        setSquereHeight(2.5);
+      } else if (window.innerWidth < 540 && window.innerWidth > 440) {
+        setSquereWidth(2);
+        setSquereHeight(2);
+      } else if (window.innerWidth < 440) {
+        setSquereWidth(1.5);
+        setSquereHeight(1.5);
+      } else {
+        setSquereWidth(3.5);
+        setSquereHeight(3.5);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center gap-2">
       <div
@@ -62,20 +84,23 @@ const Grid: React.FC<IGrid> = ({
           row.map((col, j) => (
             <div
               key={`${i}-${j}`}
-              className={`w-[3.5rem] h-[3.5rem] border border-red-500
-            ${
-              pathCells?.some((cell) => cell?.[0] === i && cell?.[1] === j)
-                ? "bg-violet-500"
-                : hoveredCell[0] === i && hoveredCell[1] === j
-                ? "bg-green-500"
-                : col === 3
-                ? "bg-red-500"
-                : col === 1
-                ? "bg-green-500"
-                : col === 2
-                ? "bg-yellow-500"
-                : "bg-gray-700"
-            }`}
+              className={`border border-[#42DB1F] border-opacity-25 ${
+                pathCells?.some((cell) => cell?.[0] === i && cell?.[1] === j)
+                  ? "bg-path-cell"
+                  : hoveredCell[0] === i && hoveredCell[1] === j
+                  ? "bg-wall-cell"
+                  : col === 3
+                  ? "bg-end-cell"
+                  : col === 1
+                  ? "bg-wall-cell"
+                  : col === 2
+                  ? "bg-start-cell"
+                  : "bg-background"
+              }`}
+              style={{
+                width: `${squereWidth}rem`,
+                height: `${squereHeight}rem`,
+              }}
               onClick={() => handleCellClick(i, j)}
               onMouseEnter={() => handleCellHover(i, j)}
               onMouseLeave={() => {

@@ -1,12 +1,16 @@
-import Legend from "./components/Legend";
+import { Toaster } from "react-hot-toast";
 import Main from "./components/Main";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <div className="bg-gray-800 text-white text-center w-full min-h-[90vh] h-auto flex justify-center items-center">
-      <Main />
-      <Legend />
-    </div>
+    <>
+      <Toaster />
+      <div className="bg-background text-white text-center w-full h-[100vh] gap-4 flex flex-col justify-center items-center">
+        <Header />
+        <Main />
+      </div>
+    </>
   );
 }
 

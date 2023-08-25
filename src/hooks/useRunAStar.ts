@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Grid, AStarFinder } from "pathfinding";
+import toast from "react-hot-toast";
 
 const useRunAStar = (
   startCell: number[],
   endCell: number[],
-  grid: number[][],
-  setPathNotFound: (pathNotFound: boolean) => void
+  grid: number[][]
 ) => {
   const [pathCells, setPathCells] = useState<number[][]>([]);
 
@@ -28,7 +28,7 @@ const useRunAStar = (
 
     const gridInstance = new Grid(matrix);
     const finder = new AStarFinder({
-      walkable: (x, y) => grid[y][x] !== Infinity,
+      walkable: (x: string, y: string) => grid[y][x] !== Infinity,
     });
     const path = finder.findPath(
       startCell[1],
@@ -39,7 +39,7 @@ const useRunAStar = (
     );
 
     if (path.length === 0) {
-      setPathNotFound(true);
+      toast.error("No path found");
       return;
     }
 

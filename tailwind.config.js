@@ -5,10 +5,14 @@ export default {
     extend: {
       colors: {
         text: "#ffffff",
-        background: "#00081e",
+        background: "#080D07",
         "primary-button": "#0505c7",
         "secondary-button": "#104256",
         accent: "#049a90",
+        "start-cell": "#EAB308",
+        "end-cell": "#EF4444",
+        "wall-cell": "#22C55E",
+        "path-cell": "#8B5CF6",
       },
     },
   },
