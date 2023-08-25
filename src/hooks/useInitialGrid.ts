@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 const START_CELL = 2;
 const END_CELL = 3;
 
-const useInitialGrid = (COLUNMS: number, ROWS: number) => {
+const COLUNMS = 12;
+const ROWS = 12;
+
+const useInitialGrid = () => {
   const [startCell, setStartCell] = useState<number[]>([]);
   const [endCell, setEndCell] = useState<number[]>([]);
   const [grid, setGrid] = useState<Array<Array<number>>>([]);

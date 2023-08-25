@@ -2,12 +2,10 @@ import React from "react";
 
 interface IRunButton {
   runAStar: () => void;
-  disableButtons: boolean;
 }
 
 const RunAlgorithmButton: React.FC<IRunButton> = ({
   runAStar,
-  disableButtons,
 }): JSX.Element => {
   return (
     <button onClick={runAStar}>
