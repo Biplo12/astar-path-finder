@@ -22,14 +22,13 @@ const useRunAStar = (
     for (let row = 0; row < numRows; row++) {
       matrix[row] = new Array(numCols);
       for (let col = 0; col < numCols; col++) {
-        matrix[row][col] = grid[row][col] === 1 ? Infinity : 0;
+        matrix[row][col] = grid[row][col] === 1 ? 1 : 0;
       }
     }
 
     const gridInstance = new Grid(matrix);
-    const finder = new AStarFinder({
-      walkable: (x, y) => grid[y][x] !== Infinity,
-    });
+    const finder = new AStarFinder();
+
     const path = finder.findPath(
       startCell[1],
       startCell[0],
