@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import useCellClick from "@/hooks/useCellClick";
 import useCellHover from "@/hooks/useCellHover";
 
+const START_CELL = 1;
+const END_CELL = 2;
+const PATH_CELL = 3;
+
 interface IGrid {
   grid: number[][];
   setGrid: React.Dispatch<React.SetStateAction<number[][]>>;

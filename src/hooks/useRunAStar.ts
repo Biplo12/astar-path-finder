@@ -49,6 +49,7 @@ const useRunAStar = (
       setPathCells((prevPathCells) => [...prevPathCells, [rowIndex, colIndex]]);
       index++;
 
+      setDisableButtons(true);
       if (index === path.length - 1) {
         clearInterval(intervalId);
       }
